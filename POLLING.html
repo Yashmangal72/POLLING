@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, 
+                   initial-scale=1.0">
+    <title>User Polls</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+ 
+<body>
+    <div class="container">
+        <h1 class="poll-question">
+          Which is the best language in programming?
+        </h1>
+        <form id="poll-form" class="poll-form">
+            <label>
+                <input type="radio"
+                       name="vote"
+                       value="Css"> Css
+            </label>
+            <label>
+                <input type="radio"
+                       name="vote"
+                       value="JAVA"> JAVA
+            <label>
+                  <input type="radio"
+                               name="vote"
+                               value="PYTHON"> PYTHON
+            </label>
+            <button type="submit"
+                    class="vote-button">
+              Poll
+            </button>
+        </form>
+        <div id="results" class="results">
+            <h2 class="results-title">
+              Results
+            </h2>
+            <div class="results-count">
+                <p>Css: 
+                  <span id="Css-count"
+                        class="count">0
+                  </span>
+                </p>
+                <p>JAVA: 
+                  <span id="JAVA-count"
+                             class="count">0
+                  </span>
+                </p>
+                <p>PYTHON: 
+                  <span id="PYTHON-count"
+                             class="count">0
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+ 
+</html>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url(background.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+ 
+.container {
+    background: linear-gradient(to bottom, #0078d4, #0056b3);
+    background-image: url(background.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    text-align: center;
+    padding: 30px;
+}
+ 
+.poll-question {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+ 
+.poll-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #fff;
+}
+ 
+.vote-button {
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+ 
+.vote-button:hover {
+    background-color: #0078d4;
+}
+ 
+.results {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+ 
+.results-title {
+    font-size: 20px;
+}
+ 
+.results-count {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-top: 10px;
+}
+ 
+.count {
+    font-weight: bold;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const pollForm = 
+        document.getElementById("poll-form");
+    const CssCount = 
+        document.getElementById("Css-count");
+        const JAVACount = 
+        document.getElementById("JAVA-count");
+        const PYTHONCount = 
+        document.getElementById("PYTHON-count");
+    let CssVotes = 0;
+    let JAVAVotes = 0;
+    let PYTHONVotes = 0;
+ 
+    pollForm.addEventListener("submit", function (e) {
+ 
+        e.preventDefault();
+        const formData = new FormData(pollForm);
+        const userVote = formData.get("vote");
+ 
+        if (userVote === "Css") {
+            CssVotes++;
+        } else if (userVote === "JAVA") {
+            JAVAVotes++;
+        }
+        else if (userVote === "PYTHON") {
+            PYTHONVotes++;
+        }
+        updateResults();
+    });
+ 
+    function updateResults() {
+        CssCount.textContent = CssVotes;
+        JAVACount.textContent = JAVAVotes;
+        PYTHONCount.textContent = PYTHONVotes;
+    }
+});
+</script>
